@@ -1,0 +1,42 @@
+
+mat-form-field,textarea{
+    width: 100%;
+    color: black;
+}
+
+mat-spinner{
+    margin: auto;
+}
+
+input[type="file"]{
+    visibility: hidden;
+}
+
+.image-preview{
+    height: 5rem;
+    margin: 1rem 0;
+
+}
+
+.image-preview img{
+    height: 100%;
+}
+
+mat-card{
+    width: 80%;
+    margin: auto;
+    opacity: .9;
+}
+
+.custom-select{
+    width: 27%;
+}
+
+select{
+    display: inline;
+}
+
+
+.pass_count_header{
+    width: 20%;
+}

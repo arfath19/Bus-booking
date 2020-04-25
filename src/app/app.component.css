@@ -1,0 +1,9 @@
+main{
+    /* min-height: 90vh; */
+    width: 100%;
+    margin:1rem  auto;   
+    /* background-image: url('../../uploads/1.jpg');    */
+    /* background-size: cover;
+    background-image: linear-gradient(to right bottom, #7ed56fda, #28b48542),url('../../uploads/2.jpg');
+      backface-visibility: hidden; */
+}

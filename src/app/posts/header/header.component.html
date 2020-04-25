@@ -1,0 +1,24 @@
+<mat-toolbar >
+     <a  class="main_heading" routerLink="/" *ngIf='!userIsAuthenticated' > BOOKING APP  </a>
+
+    <span> <a  *ngIf='userIsAuthenticated' routerLink="/"> My Bookings</a></span>
+    <span class="spacer"></span>
+    <ul>
+        <p *ngIf='userIsAuthenticated'>Welcome :&nbsp;name</p>
+        <li *ngIf='userIsAuthenticated'>
+            <a mat-button routerLinkActive="font_color" routerLink="/create">Book now !</a>
+        </li>
+        
+        <li *ngIf='!userIsAuthenticated'>
+            <a mat-button routerLinkActive="font_color" routerLink="/login">Login</a>
+        </li>
+
+        <li *ngIf='!userIsAuthenticated'>
+            <a mat-button routerLinkActive="font_color" routerLink="/signup">Sign Up</a>
+        </li>
+        
+        <li *ngIf='userIsAuthenticated'>
+            <button mat-button (click)="onLogout()" >Logout</button> 
+        </li>
+    </ul>
+</mat-toolbar>

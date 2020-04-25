@@ -1,0 +1,38 @@
+<br>    
+<mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    
+
+    <form [formGroup]="form" (submit)="onSavePost()"  *ngIf="!isLoading">
+
+        <br>
+    <div class="container  text-white " >
+        
+        <label style="color: rgb(80, 80, 80);" >From state </label>
+        <select formControlName='state1' value="0" class="custom-select " >
+          
+          <option *ngFor="let state of states" value= {{state.id}}>{{state.name}}</option>
+        </select>
+        <span>&nbsp;</span>
+        <label style="color: rgb(80, 80, 80);" >To state </label>
+      
+        <select formControlName='state2' value="0" class="custom-select ">
+          <option *ngFor="let state of states " value= {{state.id}}>{{state.name}} </option>
+        </select>
+      
+        &nbsp;
+        <mat-form-field class="pass_count_header">
+          <input formControlName='passengers' type="number" matInput placeholder="no of passengers" >
+          <br>  
+          <mat-error *ngIf="form.get('passengers').invalid">Please enter no of passengers before submitting....</mat-error>
+      </mat-form-field>
+      </div>
+      
+      
+
+        <button mat-raised-button color="accent" type="submit">Proceed to select seats</button>
+    </form>
+
+   
+</mat-card>
+<!-- <p> {{newPost}} </p> -->

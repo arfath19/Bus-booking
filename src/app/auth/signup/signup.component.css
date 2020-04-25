@@ -1,0 +1,25 @@
+
+mat-form-field{
+    width: 100%;
+
+}
+
+mat-spinner{
+    margin: auto;
+}
+mat-card{
+    margin: auto;
+    width: 70%;
+    opacity: .95;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
