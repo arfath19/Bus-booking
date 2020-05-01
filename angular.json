@@ -21,7 +21,9 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/steering-wheel-svgrepo-com.svg",
+              "src/steering-wheel-pngrepo-com.png"
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
