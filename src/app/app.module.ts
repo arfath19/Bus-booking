@@ -29,6 +29,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErroRInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SeatsComponent } from './posts/seats/seats.component';
+import { TicketComponent } from './posts/ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     PostListComponent,
     LoginComponent,
     SignupComponent,
-    ErrorComponent
+    ErrorComponent,
+    SeatsComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
