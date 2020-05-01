@@ -7,6 +7,7 @@ const morgan=require('morgan');
 
 const postRoute=require('./routes/posts');
 const userRoutes=require('./routes/user');
+const ticektRoute=require('./routes/ticket');
 
 
 const path=require('path')
@@ -46,6 +47,7 @@ app.use((req,res,next)=>{
 
 app.use('/posts',postRoute);
 app.use('/user',userRoutes);
+app.use('/ticket',ticektRoute);
 
 
 app.use((req,res,next)=>{

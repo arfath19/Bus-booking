@@ -1,14 +1,13 @@
 const PostModel= require('../models/posts');
 
 
-
 exports.createPost=(req,res,next)=>{
     // console.log(req.file);
     const url=req.protocol+"://"+req.get('host');
     const post=new PostModel({
         state1: req.body.state1,
         state2: req.body.state2,
-        passengers:req.body.passengers,
+        booking_date:req.body.booking_date,
         creator: req.userData.userId
     });
   
@@ -40,25 +39,20 @@ exports.createPost=(req,res,next)=>{
 };
 
 exports.updatePost=(req,res,next)=>{
-    // let productImage=req.body.productImage;
-    // if(req.file){
-    //     const url=req.protocol+"://"+req.get('host');
-    //     productImage= url+"/images/"+ req.file.filename
-
-    // }
+ 
     const post=new PostModel({
         _id:req.body.id,
         state1:req.body.state1,
         state2: req.body.state2,
-        passengers: req.body.passengers,
-        creator: req.userData.userId
+        booking_date: req.body.booking_date,
+        // creator: req.userData.userId
     });
     // console.log(post)
 
-    PostModel.updateOne({ _id:req.params.postId, creator : req.userData.userId }, post)
+PostModel.updateOne({ _id:req.params.postId/*, creator : req.userData.userId*/ }, post)
     .then(result=>{
         if(result.n > 0 ){ //cmg from mongodb result obj
-            console.log('Updated Booking successfully');
+            console.log('Updated Booking successfully');    
             res.status(200).json({ //try with 200 if any errors occurs
                 message: 'Update Successful!'
             })
@@ -128,7 +122,7 @@ exports.updatePost=(req,res,next)=>{
 exports.getPost=(req,res,next)=>{
     const id=req.params.postId;
     PostModel.findById(id)
-    .select(' state1 state2 _id passengers  creator')
+    .select(' state1 state2 _id booking_date  creator')
     .exec()
     .then(post=>{
         console.log("Document found in MONGODB :",post);
@@ -178,3 +172,4 @@ exports.deletePost=(req,res,next)=>{
     });
     
 };
+

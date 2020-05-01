@@ -7,6 +7,7 @@ const checkAuth=require('../middleware/check-auth');
 
 const PostController=require('../controllers/posts');
 
+
 // const MIME_TYPE_MAP={
 //     'image/jpeg':'jpg',
 //     'image/jpg':'jpg',
@@ -52,7 +53,6 @@ router.get('/:postId',PostController.getPost);
 
 router.patch('/:postId',checkAuth,/*upload.single('productImage'),*/PostController.updatePost)
     
-
 router.delete('/:postId',checkAuth  , PostController.deletePost );
 
 module.exports=router;
