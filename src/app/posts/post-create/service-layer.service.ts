@@ -32,13 +32,21 @@ export class ServiceLayerService {
     return[
       new State(1,'Telangana'),
       new State(2,'Andhra'),
-      new State(3,'Tamil Nadu'),
-      new State(4,'Karnataka'),
-      new State(5,'Kerala'),
-      new State(6,'Alabama' ),
-      new State(7,'Alaska' ),
-      new State(8,' Kansas'),
-      new State(9,'Hawaii'),
+      new State(3,'Arunachal Pradesh'),
+      new State(4,'Assam'),
+      new State(5,'Bihar'),
+      new State(6,'Chhattisgarh' ),
+      new State(7,'Goa' ),
+      new State(8,' Gujarat'),
+      new State(9,'Haryana'),
+      new State(10,'Himachal Pradesh'),
+      new State(11,'Jharkhand'),
+      new State(12,'Karnataka'),
+      new State(13,'Kerala'),
+      new State(14,'Haryana'),
+      new State(15,'Madhya Pradesh'),
+      new State(16,'Maharashtra'),
+      new State(17,'Tamil Nadu')
     ]
   // this.http.get<{message:string,data:State[]}>('http://localhost:3000/api/add/states')
     // .subscribe((postData)=>{

@@ -1,0 +1,46 @@
+
+
+mat-card{
+    width: 55%;
+    /* background-color: #018def; */
+    color: #fff;
+    background-image: linear-gradient(to right bottom, #D6EAF8 , #037acf);
+
+    margin: auto auto;
+}
+
+.cippath{
+    margin: auto auto;
+    height: 67vh;
+    width: 50vw;
+    background-image:  linear-gradient(to right bottom, #EBF5FB  , #2EA3F4);
+    clip-path: polygon(85% 0,100% 50%,85% 100%,0 100%,15% 50%, 0 0);
+    color: #fff;
+}
+
+h3{
+    color: #fff;
+    /* font-weight: 500; */
+    font-family: 'Quicksand', sans-serif;
+}
+
+svg{
+    fill: #fff;
+}
+
+.data{
+
+    color: #fff ;
+    margin: auto auto;
+    padding: 20px 0;
+    text-align: center;
+    width: 350px;
+    height: 58vh;
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-family: 'Quicksand', sans-serif;
+
+    /* position: absolute;
+    top: 20%;
+    left: 25%; */
+}

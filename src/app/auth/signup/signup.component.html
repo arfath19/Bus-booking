@@ -1,14 +1,15 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <h2>Register below!</h2>
 
 
     <form (submit)="onSignup(signupForm)" #signupForm=ngForm *ngIf="!isLoading">
-        <mat-form-field>
+        <mat-form-field class="display_inline">
             <input type="text" matInput minlength="3" placeholder="enter ur name..." #nameInput="ngModel" name="name" ngModel required >
             <mat-error *ngIf="nameInput.invalid">Please enter your name</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="display_inline">
             <input type="text" matInput minlength="10" placeholder="Mobile Number please..." #phonenoInput="ngModel" name="phoneno" ngModel required >
             <mat-error *ngIf="phonenoInput.invalid">Invalid mobile number</mat-error>
         </mat-form-field>

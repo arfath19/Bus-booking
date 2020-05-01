@@ -12,6 +12,10 @@ input[type="file"]{
     visibility: hidden;
 }
 
+label,mat-form-field{
+    padding: 20px   ;
+}
+
 .image-preview{
     height: 5rem;
     margin: 1rem 0;

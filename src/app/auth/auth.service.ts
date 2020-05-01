@@ -59,7 +59,7 @@ export class AuthService{
                     this.saveAuthData(token,expirationDate,this.userId);
                     console.log(expirationDate)
 
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/create']);
                 }
               
             },error=>{

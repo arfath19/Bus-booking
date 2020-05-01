@@ -2,6 +2,6 @@
     id: string,
     state1: string,
     state2: string,
-    passengers: number,
+    booking_date: Date,
     creator: string
 }

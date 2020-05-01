@@ -19,7 +19,9 @@ export class PostCreateComponent implements OnInit,OnDestroy {
   selectedCountry:Country= new Country(0,'');
   countries: Country[];
   states: State[];
+  date;
 
+  
 
   isLoading=false;
   private mode='create';
@@ -31,7 +33,21 @@ export class PostCreateComponent implements OnInit,OnDestroy {
 
   constructor(public selectedService: ServiceLayerService,public postsService:PostsService,public route: ActivatedRoute , private authService:AuthService){} //activated route to identify whether its create or edit post
   
+ 
+
   ngOnInit(){
+    var d = new Date();
+   var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
+
+if (month.length < 2) 
+    month = '0' + month;
+if (day.length < 2) 
+    day = '0' + day;
+
+  this.date= [year, month, day].join('-');
+   
     this.states=this.selectedService.getStates();
     // console.log(this.selectedService.getCountries)
     //  this.onSelect(this.selectedCountry.id);
@@ -49,7 +65,7 @@ export class PostCreateComponent implements OnInit,OnDestroy {
       state2: new FormControl(null,{
         validators: [Validators.required]
       }),
-      passengers: new FormControl(null,{
+      booking_date: new FormControl(null,{
         validators: [Validators.required]
       })
 
@@ -70,13 +86,13 @@ export class PostCreateComponent implements OnInit,OnDestroy {
             id: postData._id,
             state1: postData.state1,
             state2: postData.state2,  
-            passengers: postData.passengers,
+            booking_date: postData.booking_date,
             creator: postData.creator
           }; //to remove squigly lines we need to add the type to our get<> method of http params to tell what we expect from db 
           this.form.setValue({
             state1:this.post.state1,
             state2: this.post.state2,
-            passengers: this.post.passengers
+            booking_date: this.post.booking_date
 
           }); //for edit option for value to be extracted from db
         
@@ -89,7 +105,29 @@ export class PostCreateComponent implements OnInit,OnDestroy {
     })
   }
 
-  
+  showBuses(val){
+    console.log("post val :",val)
+    document.getElementById('showBuses').innerHTML=`
+          <tr>
+            <th style="padding:10px">Bus type</th>
+            <th style="padding:10px">Bus Operator</th>
+            <th style="padding:10px">Boarding </th>
+            <th style="padding:10px">Destination</th>
+            <th style="padding:10px">Timings</th>
+            <th style="padding:10px">Departure Date</th>
+          </tr>
+          <tr>
+            <td style="padding:10px">Scania MultiAxyl[2+2] AC</td>
+            <td style="padding:10px">Bharathi Travels</td>
+            <td style="padding:10px">${val.value.state1}</td>
+            <td style="padding:10px">${val.value.state2}</td>
+            <td style="padding:10px">07:35pm ............. 08:10am</td>
+            <td style="padding:10px">${val.value.booking_date}</td>
+          </tr>
+    `;
+
+    document.getElementById('hide_seek').style.display="block";
+  }
   // onSelect(countryid) {
   //   this.states = this.selectedService.getStates().filter((item) => item.countryid == countryid);
    
@@ -124,11 +162,11 @@ export class PostCreateComponent implements OnInit,OnDestroy {
     this.postsService.addPost(
       this.form.value.state1,
       this.form.value.state2,
-      this.form.value.passengers
+      this.form.value.booking_date
       ); //title and content r from formControl names
     }
     else{
-      this.postsService.updatePost(this.postId,this.form.value.state1,this.form.value.state2,this.form.value.passengers);
+      this.postsService.updatePost(this.postId,this.form.value.state1,this.form.value.state2,this.form.value.booking_date);
     }
     this.form.reset();
   }

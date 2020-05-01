@@ -1,0 +1,101 @@
+.bus{
+    margin:auto auto;
+    display: flex;
+    width: 65%;
+    /* min-height: 40vh; */
+    opacity: .9;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+img{
+    width: 60px;
+    height: 60px;
+    padding: 2px;
+    transform: rotate(-90deg);
+    margin-top: 8px;
+    margin-left: 30px;
+}
+
+
+mat-spinner{
+    margin: auto;
+}
+svg{
+    transform: rotateY(180deg);
+
+}
+
+table{
+    width: 100%;
+}
+
+
+td{
+    padding: 1px;
+}
+button[mat-fab]{
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    background-color: none;
+    transition: none;
+    /* width: 10px; */
+}
+
+
+button[class="active"]{
+    outline: none;
+}
+
+button:focus{
+    outline: none;   
+    /* background-color: lawngreen; */
+
+}
+.example-radio-group {
+    display: flex;
+    flex-direction: row;
+    flex :1 0 auto;
+    /* margin: 15px 0; */
+}
+
+
+.form_passenger{
+    /* display: flex; */
+    /* margin: auto; */
+    width: 40%;
+    opacity: .95;
+} 
+.mat-form-field{
+    width: 100%;
+}
+
+/* .spacer{
+
+        flex : 1 1 auto; 
+   
+} */
+
+.disabled{
+    background-color: lightcoral;
+    cursor: not-allowed;
+}
+.dynamic {
+    display: flex;
+    flex: 1 1 100px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding:20px;
+}

@@ -5,32 +5,39 @@
 
     <form [formGroup]="form" (submit)="onSavePost()"  *ngIf="!isLoading">
 
-        <br>
     <div class="container  text-white " >
         
         <label style="color: rgb(80, 80, 80);" >From state </label>
         <select formControlName='state1' value="0" class="custom-select " >
           
-          <option *ngFor="let state of states" value= {{state.id}}>{{state.name}}</option>
+          <option *ngFor="let state of states" value= {{state.name}}>{{state.name}}</option>
         </select>
-        <span>&nbsp;</span>
+
         <label style="color: rgb(80, 80, 80);" >To state </label>
       
         <select formControlName='state2' value="0" class="custom-select ">
-          <option *ngFor="let state of states " value= {{state.id}}>{{state.name}} </option>
+          <option *ngFor="let state of states " value= {{state.name}}>{{state.name}} </option>
         </select>
-      
-        &nbsp;
-        <mat-form-field class="pass_count_header">
-          <input formControlName='passengers' type="number" matInput placeholder="no of passengers" >
-          <br>  
-          <mat-error *ngIf="form.get('passengers').invalid">Please enter no of passengers before submitting....</mat-error>
-      </mat-form-field>
-      </div>
-      
-      
 
-        <button mat-raised-button color="accent" type="submit">Proceed to select seats</button>
+      <mat-form-field style="width: 20%;">
+        <mat-label>Booking Date</mat-label>
+        <input matInput name="booking_date" [min]="date" formControlName="booking_date" required [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker  #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('booking_date').invalid">Please enter a valid date</mat-error>
+
+      </mat-form-field>
+
+      <button mat-raised-button color="warn" type="button" (click)="showBuses(form)">Search for buses</button>
+      
+      </div>
+       <br>
+      <div >
+        <table id="showBuses" border="1" style="border:1px solid #ffc40e; margin: auto auto;" class="busDetails" >
+        </table>
+      </div>
+      <br>
+        <button id="hide_seek" style="display: none; margin: auto auto;"mat-raised-button color="accent" type="submit">Proceed to select seats</button>
     </form>
 
    
