@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@515&display=swap');
 html, body { height: 100%; }
 body {
-    margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
    
       min-height: 100vh;
@@ -10,8 +9,10 @@ body {
       margin: 0 0 auto;   
       background-size: cover;
       background-image: linear-gradient(to right bottom, rgba(232, 234, 246, 0.209), rgba(159, 168, 218, 0.799)),url('../uploads/5.jpg');
-        backface-visibility: hidden;
- 
+      backface-visibility: hidden;
+      background-position: center;
+      background-repeat: no-repeat;
+
       /* clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
       
 
