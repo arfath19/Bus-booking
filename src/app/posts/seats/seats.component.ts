@@ -35,18 +35,13 @@ export class SeatsComponent implements OnInit {
     let disabled:any[]=[];
     for(let i=0;i<this.random.length;i++){
         let test=document.querySelectorAll(`button[value="${this.random[i]}"] svg`);
-        // let dis=document.getElementById(`${this.random[i]}`).setAttribute('disabled',true);
         base.push(test);
-        // disabled.push(dis);
     }
-    // console.log(disabled)
-      // disabled[0].setAttribute('disabled',true)
       console.log(base)
       for(let i=0;i<base.length;i++){
         console.log(base[i]);
         let test=base[i];
         test[0].classList.add('disabled');
-        const disabling=(test[0].parentElement.parentElement);
         
 
     }
@@ -57,6 +52,14 @@ export class SeatsComponent implements OnInit {
 count=1;
 
   valueCapture(val:any,event){
+    let buttons=document.querySelectorAll(`button .disabled `);
+    for(let i=0;i<buttons.length;i++){
+      let button=buttons[i];
+      button.parentElement.parentElement.toggleAttribute('disabled',true)
+
+    }
+
+
     this.seat_number=val;
 
 
@@ -95,41 +98,13 @@ count=1;
       } else{
         document.getElementById('show').style.display="none"
       }
-      if(this.farePrice>=901){
-      
-      
-          document.getElementById('show1').style.display='block';
-       
-      } else{
-        document.getElementById('show1').style.display="none"
-      }
 
-      if(this.farePrice>=1801){
-      
-      
-          document.getElementById('show2').style.display='block';
-       
-      }
-      else{
-        document.getElementById('show2').style.display="none"
-      }
-      if(this.farePrice>=2701){
-      
-          document.getElementById('show3').style.display='block';
-       
-      }
-      else{
-        document.getElementById('show3').style.display="none"
-      }
      
     }
-    console.log('array val:  ',finalarr);
 
   }
 
   passengerDetails(form:NgForm){
-    // console.log(this.selectedSeats)
-      console.log("before submitting:",form.value)
       if(form.invalid){
         return;
       }
@@ -137,7 +112,6 @@ count=1;
   }
 
   fillDetails(){
-    console.log("Fill: ",this.formval)
     if(this.formval.length)
     this.postsService.submitPassengers(this.selectedSeats,this.formval,this.farePrice)
   }

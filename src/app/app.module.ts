@@ -11,6 +11,9 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,6 +34,8 @@ import { ErrorComponent } from './error/error.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SeatsComponent } from './posts/seats/seats.component';
 import { TicketComponent } from './posts/ticket/ticket.component';
+import { BookingComponent } from './posts/booking/booking.component';
+import { PaymentComponent } from './posts/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,9 @@ import { TicketComponent } from './posts/ticket/ticket.component';
     SignupComponent,
     ErrorComponent,
     SeatsComponent,
-    TicketComponent
+    TicketComponent,
+    BookingComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,10 @@ import { TicketComponent } from './posts/ticket/ticket.component';
     AppRoutingModule,
     MatInputModule,
     MatCardModule,
+    MatTableModule,
+    MatProgressBarModule,
     MatRadioModule,
+    MatSelectModule,
     MatButtonModule,
     MatToolbarModule,
     MatDatepickerModule,

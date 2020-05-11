@@ -9,7 +9,7 @@ import * as Twilio from 'twilio';
 export class TicketComponent implements OnInit {
   passDetailsValues:any[]=[];
   passDetailsSeatsArray:any[]=[];
-  
+  isLoading=false;
   name;
   phoneno;
   gender;
@@ -18,16 +18,19 @@ export class TicketComponent implements OnInit {
   boardingState;
   destinationState;
   bookingDate;
+  creator;
 
 
   constructor(public postsService:PostsService) { }
 
   ngOnInit(): void {
+    this.isLoading=true;
     this.passDetailsValues=this.postsService.getPassDetailsValues();
     this.passDetailsSeatsArray =this.postsService.getPassDetailsSeatsArray();
     console.log('ticket :',this.passDetailsValues,this.passDetailsSeatsArray);
     
     if(this.passDetailsValues.length&&this.passDetailsSeatsArray){
+      this.isLoading=false;
       this.name=this.passDetailsValues[0][0].name1;
       this.phoneno=this.passDetailsValues[0][0].phoneno1;
       this.gender=this.passDetailsValues[0][0].gender1;
@@ -37,7 +40,7 @@ export class TicketComponent implements OnInit {
       this.destinationState=this.postsService.destinationState;
       this.bookingDate=this.postsService.bookingDate;
       // console.log(this.name,this.phoneno,this.gender,this.ticketcost,this.seatno,this.bookingDate,this.boardingState,this.destinationState);
-      this.postsService.saveTicket(this.name,this.phoneno,this.gender,this.ticketcost,this.seatno,this.boardingState,this.destinationState,this.bookingDate);
+      this.postsService.saveTicket(this.name,this.phoneno,this.gender,this.ticketcost,this.seatno,this.boardingState,this.destinationState,this.bookingDate,this.creator);
     }
 
   }

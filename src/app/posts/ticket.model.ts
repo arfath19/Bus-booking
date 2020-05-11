@@ -6,5 +6,6 @@ export interface Ticket{
     seatno:number,
     state1:string,
     state2:string,
-    booking_date:Date
+    booking_date:Date,
+    creator:string
 }

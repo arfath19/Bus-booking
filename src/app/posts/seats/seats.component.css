@@ -1,3 +1,15 @@
+
+
+@keyframes moveInRight {
+    0% {
+      opacity: 0.2;
+      transform: translateX(15rem); }
+    80% {
+      transform: translateX(-2rem); }
+    100% {
+      opacity: 1;
+      transform: translate(0); } }
+  
 .bus{
     margin:auto auto;
     display: flex;
@@ -7,7 +19,25 @@
     background-color: #fff;
     padding: 5px;
     border: 1px solid #333;
+
+    animation-name: moveInRight;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+   
 }
+
+@media only screen and (max-width: 992px) {
+    .bus {
+        width: auto;
+} }
+@media only screen and (max-width: 768px) {
+    .bus {
+        width: auto;
+} }
+@media only screen and (max-width: 468px) {
+    .bus {
+        width: auto;
+} }
 
 .container{
     display: flex;
@@ -26,7 +56,12 @@ img{
     margin-top: 8px;
     margin-left: 30px;
 }
-
+@media only screen and (max-width: 968px) {
+    img {
+        width: 45px;
+        height: 45px;
+        padding: 1px;
+} }
 
 mat-spinner{
     margin: auto;
@@ -99,3 +134,20 @@ button:focus{
     justify-content: space-evenly;
     padding:20px;
 }
+
+
+.active{
+    color: #018def;
+  }
+  .nav{
+    background-color: #fff;
+    color: #777;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px;
+  }
+  .nav>li{
+    cursor: not-allowed;
+  }

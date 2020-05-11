@@ -14,20 +14,7 @@ export class ServiceLayerService {
 
   constructor(private http:HttpClient) { }
 
-  // getCountries(){
-  //   return [
-  //     new Country(1,'India'),
-  //     new Country(2,'USA')
-  //   ]
-  //   // this.http.get<{message:string,data: Country[]}>('http://localhost:3000/api/add')
-  //   // .subscribe((postData)=>{
-  //   //     this.data= postData.data;
-
-  //   //     // this.data=[...postData.data]; //try this one
-  //   //     console.log(this.data);
-  //   // });
-  // }
-
+  
   getStates(){
     return[
       new State(1,'Telangana'),

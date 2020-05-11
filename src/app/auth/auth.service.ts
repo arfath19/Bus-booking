@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Injectable({providedIn: "root"})
 export class AuthService{
     private token:string;
-
+    username:string;
     private tokenTimer:any;
     private userId:string;
     private authStatusListener=new Subject<boolean>();
@@ -27,6 +27,10 @@ export class AuthService{
         return this.userId;
     }
 
+    getUsername(){
+        return this.username;
+    }
+
     getAuthStatusListener(){
         return this.authStatusListener.asObservable();
     }
@@ -43,7 +47,7 @@ export class AuthService{
 
     login(email:string,password:string){
         const authData:AuthData={name:null,phoneno:null,gender:null,email:email,password:password,date:null};
-        this.http.post<{token:string, expiresIn:number, userId:string}>('http://localhost:12000/user/login',authData)
+        this.http.post<{token:string, expiresIn:number, userId:string,username:string}>('http://localhost:12000/user/login',authData)
             .subscribe(response=>{
                 const token=response.token;
                 this.token=token;
@@ -53,13 +57,15 @@ export class AuthService{
                    this.setAuthTimer(expiresInDuration);
                     this.isAuthenticated=true;
                     this.userId=response.userId;
+                    this.username=response.username;
+                    console.log('test name:',this.username,response)
                     this.authStatusListener.next(true);
                     const now=new Date();
                     const expirationDate=new Date(now.getTime()+expiresInDuration*1000);
-                    this.saveAuthData(token,expirationDate,this.userId);
+                    this.saveAuthData(token,expirationDate,this.userId,this.username);
                     console.log(expirationDate)
 
-                    this.router.navigate(['/create']);
+                    this.router.navigate(['/']);
                 }
               
             },error=>{
@@ -72,6 +78,7 @@ export class AuthService{
         this.isAuthenticated=false;
         this.authStatusListener.next(false);
         this.userId=null;
+        this.username=null;
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
         this.router.navigate(['/']);
@@ -88,11 +95,12 @@ export class AuthService{
         }
         const now =new Date();
         const expiresIn=authInformation.expirationDate.getTime()-now.getTime();
-        // console.log(authInformation,expiresIn)
+        console.log(authInformation,expiresIn)
         if(expiresIn>0){
             this.token=authInformation.token;
             this.isAuthenticated=true;
             this.userId=authInformation.userId;
+            this.username=authInformation.username;
             this.setAuthTimer(expiresIn/1000);
             this.authStatusListener.next(true);
 
@@ -100,15 +108,19 @@ export class AuthService{
     }
     
     //storage for browser (token and time)
-    private saveAuthData(token:string,expirationDate:Date,userId:string){
+    private saveAuthData(token:string,expirationDate:Date,userId:string,username:string){
         localStorage.setItem('token',token);
         localStorage.setItem('expiration',expirationDate.toISOString());
         localStorage.setItem('userId',userId);
+        localStorage.setItem('username',username);
+
     }
     private clearAuthData(){
         localStorage.removeItem('token');
         localStorage.removeItem('expiration');
         localStorage.removeItem('userId');
+        localStorage.removeItem('username');
+
 
     }
 
@@ -123,7 +135,7 @@ export class AuthService{
         const token=localStorage.getItem('token');
         const expirationDate=localStorage.getItem('expiration');
         const userId=localStorage.getItem('userId');
-
+        const username=localStorage.getItem('username')
         if(!token || !expirationDate){
             return;
         }
@@ -131,7 +143,8 @@ export class AuthService{
         return {
             token:token,
             expirationDate:new Date(expirationDate),
-            userId: userId
+            userId: userId,
+            username:username
         }
     }
 

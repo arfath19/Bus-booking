@@ -27,15 +27,21 @@
             <mat-error *ngIf="emailInput.invalid">Please enter valid email</mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Password please..." #passwordInput="ngModel" name="password" ngModel required >
-            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password</mat-error>
+            <input type="password" matInput placeholder="Password please..." pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" #passwordInput="ngModel" name="password" ngModel required >
+            <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.Password must contain &rarr;
+                <ul style="display: inline;">
+                <li style="float: right;padding: 5px;list-style: none;">1 capitalized character</li>
+                <li  style="float: right;padding: 5px;list-style: none;">1 special character</li>
+                <li  style="float: right;padding: 5px;list-style: none;">upto 8 characters</li>
+                <li  style="float: right;padding: 5px;list-style: none;">1 numeric character</li></ul>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Choose a date</mat-label>
+            <mat-label>Enter your Date of Birth</mat-label>
             <input matInput name="date"  #dateInput="ngModel" ngModel required [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
-            <mat-error *ngIf="dateInput.invalid">Please enter a valid date</mat-error>
+            <mat-error *ngIf="dateInput.invalid">Please enter ur dob</mat-error>
 
           </mat-form-field>
 

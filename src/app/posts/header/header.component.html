@@ -1,22 +1,22 @@
 <mat-toolbar >
      <a  class="main_heading" routerLink="/" *ngIf='!userIsAuthenticated' > b<sub>ooking</sub>.t<sub>ravelism</sub>.i<sub>n</sub> </a>
 
-    <span> <a style="font-size: 2rem;" *ngIf='userIsAuthenticated' routerLink="/"> MY BOOKINGS</a></span>
-    <!-- <button *ngIf="userIsAuthenticated" mat-raised-button color="accent" (click)="showPanels()">Image Gallery</button> -->
+    <span> <a class="hide_heading" *ngIf='userIsAuthenticated' routerLink="/booking"> MY BOOKINGS</a></span>
 
     <span class="spacer"></span>
+    <p *ngIf='userIsAuthenticated'>Welcome : {{username}}</p>
+
     <ul>
-        <li *ngIf='userIsAuthenticated'><p>Welcome : </p></li>
         <li *ngIf='userIsAuthenticated'>
-            <a mat-button routerLinkActive="font_color" routerLink="/create">Book now !</a>
+            <a mat-button routerLinkActive="accent" routerLink="/create">Plan your trip</a>
         </li>
         
         <li *ngIf='!userIsAuthenticated'>
-            <a mat-button routerLinkActive="font_color" routerLink="/login">Login</a>
+            <a mat-button routerLinkActive="accent" routerLink="/login">Login</a>
         </li>
 
         <li *ngIf='!userIsAuthenticated'>
-            <a mat-button routerLinkActive="font_color" routerLink="/signup">Sign Up</a>
+            <a mat-button routerLinkActive="accent" routerLink="/signup">Sign Up</a>
         </li>
         
         <li *ngIf='userIsAuthenticated'>

@@ -1,10 +1,19 @@
+
+<ul class="nav">
+    <li>Plan your trip</li>
+    <li class="active">Seat Selection</li>
+    <li>Payment Gateway</li>
+    <li>Ticket Generation</li>
+  </ul>
+  <br>
+  
 <div class="container">
 
 <mat-card class="bus">
     <table >
         <tr>
 
-            <img src="../../../assets/steering-wheel-pngrepo-com.png" alt="steering img">
+            <img src="../../../assets/steering-wheel-svgrepo-com.svg" alt="steering img">
 
             <td> <button id="1" mat-fab color="basic" value="1" (click)="valueCapture(1,$event)"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
@@ -58,9 +67,7 @@
             </td>
           
         </tr>
-       
         <tr>
-
             &nbsp;
             <td> <button id="8"  mat-fab color="basic" value="8" (click)="valueCapture(8,$event)"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path
@@ -179,19 +186,34 @@
 
         </tr>
 
-        <tr *ngIf="farePrice>0">
-            &nbsp;
-            <td colspan="2">
-                <p>farePrice : {{farePrice}}</p>
-                
-            </td>
-        </tr>
-       
+     
     </table>
+</mat-card>
     
 
+    <mat-card  *ngIf="farePrice>0" >
+        <table border="1" style="width: 300px;">
+            <tr>
+                <th colspan="2">- - - </th>
+                <th >Price Calculation</th>
+
+            </tr>
+            <tr>
+                <td colspan="2">Fare Price for seats </td>
+                <td>{{farePrice}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">+GST Taxes</td>
+                <td>120*{{farePrice/900}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Total Fare</td>
+                <td>{{farePrice+120*farePrice/900}}</td>
+            </tr>
+        </table>
+    </mat-card>
+
     
-</mat-card>
 </div>
 <div class="dynamic">
 <ng-container>
@@ -199,7 +221,10 @@
 <mat-card id="show" style="display: none;" class="form_passenger">
 
     <form (submit)="passengerDetails(signupForm1)" #signupForm1=ngForm >
+        <ng-container *ngIf="farePrice>0">
+
         <p>Enter passenger details</p>
+        <p>Seat No: {{selectedSeats[0]}}</p>
         <mat-form-field >
             <input type="text" matInput minlength="3" placeholder="enter ur name..." #nameInput1="ngModel" name="name1" ngModel required >
             <mat-error *ngIf="nameInput1.invalid">Please enter your name</mat-error>
@@ -219,17 +244,46 @@
         <mat-error *ngIf="genderInput1.invalid">select one of the options</mat-error>
 
         
+    </ng-container>
+    <ng-container *ngIf="farePrice>900">
+
+        <p>Enter passenger details</p>
+        <p>Seat No: {{selectedSeats[1]}}</p>
+
+        <mat-form-field >
+            <input type="text" matInput minlength="3" placeholder="enter ur name..." #nameInput2="ngModel" name="name2" ngModel required >
+            <mat-error *ngIf="nameInput2.invalid">Please enter your name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+            <input type="text" matInput minlength="10" placeholder="Mobile Number please..." #phonenoInput2="ngModel" name="phoneno2" ngModel required >
+            <mat-error *ngIf="phonenoInput2.invalid">Invalid mobile number</mat-error>
+        </mat-form-field>
+        <label id="example-radio-group-label2">Please select your gender</label>
+
+        <mat-radio-group name="gender2" ngModel #genderInput2="ngModel" required aria-labelledby="example-radio-group-label2" class="example-radio-group" [(ngModel)]="genders2">
+            <mat-radio-button  class="example-radio-button" *ngFor="let type of genderType" [value]="type">
+                {{type}}
+            </mat-radio-button>
+        </mat-radio-group> 
+        <mat-error *ngIf="genderInput2.invalid">select one of the options</mat-error>
+
+        
      
 
-        <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading" >Sign Up</button>
-        <button  mat-raised-button color="primary" (click)="fillDetails()">Proceed to fill details.</button>
+           
+    </ng-container>
+     
+
+        <button mat-raised-button color="accent" type="submit" *ngIf="!signupForm1.invalid" >Submit Details</button>&nbsp;
+        <button  mat-raised-button color="primary" *ngIf="!signupForm1.invalid" (click)="fillDetails()">Proceed to payment gateway.</button>
 
     </form>
 
    
 </mat-card>
 </ng-container>
-
+<!-- 
 <ng-container>
 
     <mat-card id="show1" style="display: none;" class="form_passenger">
@@ -329,7 +383,7 @@
     
 
     </mat-card>
-</ng-container>
+</ng-container> -->
 
 
 </div>

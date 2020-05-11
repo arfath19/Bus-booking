@@ -36,6 +36,7 @@ export class PostCreateComponent implements OnInit,OnDestroy {
  
 
   ngOnInit(){
+    this.isLoading=true;
     var d = new Date();
    var month = '' + (d.getMonth() + 1);
     var day = '' + d.getDate();
@@ -47,7 +48,7 @@ if (day.length < 2)
     day = '0' + day;
 
   this.date= [year, month, day].join('-');
-   
+    console.log(this.date)
     this.states=this.selectedService.getStates();
     // console.log(this.selectedService.getCountries)
     //  this.onSelect(this.selectedCountry.id);
@@ -56,7 +57,7 @@ if (day.length < 2)
       .subscribe(authStatus=>{
         this.isLoading=false;
       });
-
+      this.isLoading=false;
     this.form=new FormGroup({
       
       state1: new FormControl(null,{
@@ -105,51 +106,22 @@ if (day.length < 2)
     })
   }
 
+  // valueIs(val){
+  //   console.log(val)
+  // }
+
   showBuses(val){
     console.log("post val :",val)
-    document.getElementById('showBuses').innerHTML=`
-          <tr>
-            <th style="padding:10px">Bus type</th>
-            <th style="padding:10px">Bus Operator</th>
-            <th style="padding:10px">Boarding </th>
-            <th style="padding:10px">Destination</th>
-            <th style="padding:10px">Timings</th>
-            <th style="padding:10px">Departure Date</th>
-          </tr>
-          <tr>
-            <td style="padding:10px">Scania MultiAxyl[2+2] AC</td>
-            <td style="padding:10px">Bharathi Travels</td>
-            <td style="padding:10px">${val.value.state1}</td>
-            <td style="padding:10px">${val.value.state2}</td>
-            <td style="padding:10px">07:35pm ............. 08:10am</td>
-            <td style="padding:10px">${val.value.booking_date}</td>
-          </tr>
-    `;
 
-    document.getElementById('hide_seek').style.display="block";
+    document.getElementById('showBuses').style.display="block";
+    document.getElementById('hide_seek1').style.display="block";
+    document.getElementById('hide_seek2').style.display="block";
+
   }
-  // onSelect(countryid) {
-  //   this.states = this.selectedService.getStates().filter((item) => item.countryid == countryid);
-   
-  // }
-
-  // onImagePick(event:Event){
-  //   // const file=event.target.files;gives error as TS doesnt know 
-  //   // it is an html input type so we need to cast it
-  //   const file=(event.target as HTMLInputElement).files[0];
-  //   this.form.patchValue({ image: file });
-  //   this.form.get('image').updateValueAndValidity();
-  //   console.log(file);
-  //   console.log(this.form);
-  //   const reader=new FileReader();
-  //   reader.onload=()=>{
-  //     this.imagePreview=reader.result as string; //as it has 2 type string or arrayBuffer we r expeting string
-  //   }
-  //   reader.readAsDataURL(file); 
-
-  // }
-
-
+ 
+  hideAgain(){
+    document.getElementById('showBuses').style.display='none';
+  }
 
   onSavePost(){
 
@@ -165,9 +137,9 @@ if (day.length < 2)
       this.form.value.booking_date
       ); //title and content r from formControl names
     }
-    else{
-      this.postsService.updatePost(this.postId,this.form.value.state1,this.form.value.state2,this.form.value.booking_date);
-    }
+    // else{
+    //   this.postsService.updatePost(this.postId,this.form.value.state1,this.form.value.state2,this.form.value.booking_date);
+    // }
     this.form.reset();
   }
 

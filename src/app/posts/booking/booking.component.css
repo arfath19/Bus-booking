@@ -1,0 +1,13 @@
+mat-card{
+    width: 65%;
+    opacity: .9;
+    margin: auto auto;
+}
+
+mat-header-cell{
+    color: #000;
+    letter-spacing: 3px;
+}
+mat-spinner{
+    margin: auto auto;
+}

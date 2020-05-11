@@ -1,0 +1,27 @@
+<ul class="nav"> 
+    <li >Plan your trip</li>
+    <li>Seat Selection</li>
+    <li class="active">Paymet Gateway</li>
+    <li>Ticket Generation</li>
+  </ul><br>
+
+<mat-card>
+    <form  #payform=ngForm (submit)="pay(payform)">
+        <h5>Payment Gateway</h5>
+
+        <mat-form-field style="width: 45%;">
+            <input matInput placeholder="Enter 16digit card number" type="text" pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}" #cardInput="ngModel" name="card" ngModel required >
+            <mat-error *ngIf="cardInput.invalid">Card Number not valid </mat-error>
+        </mat-form-field>
+        <mat-form-field class="inline">
+            <input type="text" matInput placeholder="MM/YYYY" #expiry="ngModel" pattern="^(0[1-9]|1[0-2])\/\d{4}$" name="expiry" ngModel required >
+            <mat-error *ngIf="expiry.invalid">Enter expiry details</mat-error>
+        </mat-form-field>
+        <mat-form-field class="inline">
+            <input type="text" matInput placeholder="***" #code="ngModel" pattern="\d{3}" name="code" ngModel required >
+            <mat-error *ngIf="code.invalid">Enter valid security code</mat-error>
+        </mat-form-field>
+        
+        <button mat-raised-button color="primary" type="submit">Pay Securely</button>
+    </form>
+</mat-card>

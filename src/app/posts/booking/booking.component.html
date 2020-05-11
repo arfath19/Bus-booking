@@ -1,0 +1,33 @@
+<mat-spinner color="accent" *ngIf="isLoading"></mat-spinner>
+
+<mat-card>
+    <!-- <!-- Upcoming Trips:{{data[0]}} -->
+    <!-- <button (click)="getData()">data</button> -->
+
+    <mat-table [dataSource]="data" class="mat-elevation-z8">
+        <ng-container matColumnDef="state1">
+             <mat-header-cell *matHeaderCellDef> <b> Boarding State.</b> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.state1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="state2">
+             <mat-header-cell *matHeaderCellDef> <b> Destination State.</b> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.state2}} </mat-cell>
+          </ng-container>
+        
+          <ng-container matColumnDef="booking_date">
+             <mat-header-cell *matHeaderCellDef> <b> Booking Date </b> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.booking_date}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="seatno">
+             <mat-header-cell *matHeaderCellDef> <b> Seat No </b> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.seatno}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ticketcost">
+             <mat-header-cell *matHeaderCellDef> <b> Ticket No </b> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ticketcost}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</mat-card>

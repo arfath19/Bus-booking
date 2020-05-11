@@ -12,14 +12,20 @@ export class HeaderComponent implements OnInit,OnDestroy {
   // we can save the status of the token so that we can identify whether the user is authenticated or not  
   private authListenerSubs:Subscription;
   userIsAuthenticated=false;
+  username:string;  
+
   constructor(private authService :AuthService) { }
 
   ngOnInit(): void {
     this.userIsAuthenticated=this.authService.getIsAuth(); // we call this to chck if authenticated ..
     //and save the token in localstorage of browser
+    this.username=this.authService.getUsername();
+
     this.authListenerSubs=this.authService.getAuthStatusListener()
       .subscribe((isAuthenticated)=>{
         this.userIsAuthenticated=isAuthenticated;
+        this.username=this.authService.getUsername();
+
       });
   }
 

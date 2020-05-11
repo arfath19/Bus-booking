@@ -7,6 +7,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { SeatsComponent } from './posts/seats/seats.component';
 import { TicketComponent } from './posts/ticket/ticket.component';
+import { BookingComponent } from './posts/booking/booking.component';
+import { PaymentComponent } from './posts/payment/payment.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path:'edit/:postId',component: PostCreateComponent, canActivate: [AuthGuard]},
   {path: 'login',component: LoginComponent},
   {path: 'signup',component: SignupComponent},
+  {path: 'booking',component: BookingComponent},
+  {path: 'payment',component: PaymentComponent , canActivate: [AuthGuard]},
   {path:'seats',component: SeatsComponent,canActivate: [AuthGuard]},
   {path:'ticket',component: TicketComponent,canActivate: [AuthGuard]}
 

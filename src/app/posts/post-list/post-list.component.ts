@@ -5,6 +5,7 @@ import { Subscription} from 'rxjs';
 import { PostsService } from '../posts.service';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Ticket } from '../ticket.model';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -18,7 +19,7 @@ export class PostListComponent implements OnInit,OnDestroy {
   //   // {title: 'Third Post', content:'this is the third post content'},
     
   // ];
-  posts:Post[]=[]; // to display value in appcompo .html [posts] ...[ represents val to print from ts file]
+  posts:Ticket[]=[]; // to display value in appcompo .html [posts] ...[ represents val to print from ts file]
   private postsSub:Subscription;
   isLoading=false;
   totalPosts= 0;
@@ -26,7 +27,7 @@ export class PostListComponent implements OnInit,OnDestroy {
   currentPage=1;
   pageSizeOptions=[1,2,5,10];
   userId:string;
-
+  username:string;
   private authStatusSubs:Subscription;  //for token save and based on authentication we show edit or delte buttons
   
   public userIsAuthenticated;//for token save and based on authentication we show edit or delte buttons
@@ -35,47 +36,30 @@ export class PostListComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.isLoading=true;
-    // this.postsService.getPosts(this.postsPerPage,this.currentPage);
     this.userId=this.authService.getUserId();
-    // console.log("user id is ;",this.userId)
-    
+
+    console.log("user id is ;",this.userId)
+    console.log(this.userId)
     this.postsSub=this.postsService
     .getPostsUpdateListener()
-    .subscribe((postData:{posts:Post[],postCount:number})=>{
-      this.isLoading=false;
+    .subscribe((postData:{posts:Ticket[],postCount:number})=>{
+      this.isLoading=true;
       this.totalPosts=postData.postCount;
       this.posts=postData.posts;
-      // console.log(this.postsService)
     });
+    this.isLoading=false;
     this.userIsAuthenticated=this.authService.getIsAuth();
     this.authStatusSubs=this.authService.getAuthStatusListener()
       .subscribe(isAuthenticated=>{
+        this.isLoading=false;
         this.userIsAuthenticated=isAuthenticated; 
         this.userId=this.authService.getUserId();
       });
 
   } 
 
-  onChangedPage(pageData:PageEvent){
-    this.isLoading=true;
-    this.currentPage=pageData.pageIndex+1; 
-    this.postsPerPage=pageData.pageSize;
-    // this.postsService.getPosts(this.postsPerPage,this.currentPage);
-
-  }
 
   
-  onDelete(postId:string){
-    // console.log(postId);
-    this.isLoading=true;
-    this.postsService.deletePost(postId).subscribe(()=>{
-      // this.postsService.getPosts(this.postsPerPage,this.currentPage);
-    }, error=>{
-      this.isLoading=false;
-    });
-
-  }
-
   ngOnDestroy(){
     this.postsSub.unsubscribe();
     this.authStatusSubs.unsubscribe();

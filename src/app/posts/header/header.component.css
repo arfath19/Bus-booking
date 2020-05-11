@@ -16,9 +16,10 @@ ul{
 }
 
 p{
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.72), 0 0 14px rgba(255, 255, 255, 0.45);
  
-    font-size: 15px;
-    color: #ffc04e;
+    font-size: 17px;
+    color: #fff;
     text-transform: uppercase;
 }
 
@@ -30,7 +31,20 @@ mat-toolbar{
     letter-spacing: 3px;
     font-size: 1.12rem;
 }
- 
+
+
+@media only screen and (max-width: 968px) {
+    mat-toolbar {
+        margin: 0 0 auto;
+      letter-spacing: 0;
+     } }
+
+
+     @media only screen and (max-width: 1100px) {
+        mat-toolbar {
+            margin: 0 0 auto;
+         } }
+     
 
 .main_heading{
     font-size: 4.5rem;
@@ -40,7 +54,13 @@ mat-toolbar{
     font-family: 'Amatic SC', cursive;
     text-transform: capitalize;
     
+   
 }
+@media only screen and (max-width: 968px) {
+    .main_heading {
+      letter-spacing: 2px;
+      font-size: 4rem; } }
+
 
 .font_color{
     color:#ffc04e;
@@ -55,6 +75,14 @@ ul li a, button{
     letter-spacing: 3px;
     font-size: 1.1rem;
 }
+@media only screen and (max-width: 968px) {
+    ul li a,button {
+      letter-spacing: 1.5px;
+      font-size: .8rem;
+        margin: 10px;
+        padding: 1px 10px;
+
+    } }
 
 ul li p{
     
@@ -65,3 +93,26 @@ ul li p{
     font-size: 1.1rem;
     font-weight: 500;
 }
+
+
+
+
+@media only screen and (max-width: 968px) {
+    ul li p  {
+      letter-spacing: 1px;
+      margin: 5px;
+      padding: 1px 10px;
+      font-size: .7rem; } }
+
+.hide_heading{
+    font-size: 2rem;
+}
+
+@media only screen and (max-width: 968px) {
+   .hide_heading {
+     font-size: 1.5rem; 
+    } 
+}
+
+
+

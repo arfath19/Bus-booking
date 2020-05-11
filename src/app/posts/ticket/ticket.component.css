@@ -24,9 +24,42 @@ h3{
     font-family: 'Quicksand', sans-serif;
 }
 
+@media only screen and (max-width:1050px) {
+    h3 {
+      font-size: .9rem; 
+    } }
+
+    @media only screen and (max-width:968px) {
+        h3 {
+          font-size: .78rem; 
+        } }
+        @media only screen and (max-width:790px) {
+            h3 {
+              font-size: .62rem; 
+            } }
 svg{
     fill: #fff;
 }
+
+.strong_data{
+   color: #333  ; 
+   font-size: 1.05rem ;
+   letter-spacing: 4px; 
+   text-transform: capitalize;
+}
+@media only screen and (max-width:1050px) {
+    .strong_data {
+      font-size: .8rem; 
+    } }
+
+    @media only screen and (max-width:968px) {
+        .strong_data {
+          font-size: .68rem; 
+        } }
+        @media only screen and (max-width:790px) {
+            .strong_data {
+              font-size: .60rem; 
+            } }
 
 .data{
 
@@ -44,3 +77,35 @@ svg{
     top: 20%;
     left: 25%; */
 }
+@media only screen and (max-width:1050px) {
+    .data {
+      font-size: .8rem; 
+    } }
+
+    @media only screen and (max-width:968px) {
+        .data {
+          font-size: .68rem; 
+        } }
+        @media only screen and (max-width:790px) {
+            .data {
+              font-size: .6rem; 
+            } }
+            mat-spinner{
+              margin: auto auto;
+          }
+
+          .active{
+            color: #018def;
+          }
+          .nav{
+            background-color: #fff;
+            color: #777;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 5px;
+          }
+          .nav>li{
+            cursor: not-allowed;
+          }
