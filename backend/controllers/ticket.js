@@ -15,8 +15,8 @@ exports.saveTicket=(req,res,next)=>{
         creator:req.userData.userId
 
     });
-    const account_sid = 'AC40f3810b7c7f9a84a38c1c15256b57fc';
-    const auth_token = 'c79e673924b1cd06911848e1c640abb6';
+    const account_sid = '';
+    const auth_token = '';
     var client = new twilio(account_sid, auth_token);
     client.messages.create({
                             body: `your ticket has been booked .Details are-
@@ -30,7 +30,7 @@ exports.saveTicket=(req,res,next)=>{
                             the price for ticket is ${ticket.ticketcost}       
                          `,
                          to :`+91${ticket.phoneno}`,
-                         from :'+15183230418'
+                         from :'+'
                      }).then(message=>(console.log(message.sid))).done();
     
 
