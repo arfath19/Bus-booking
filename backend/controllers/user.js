@@ -54,13 +54,15 @@ exports.userLogin=(req,res,next)=>{
             const token=jwt.sign(
                 {email:fetchedUser.email,userId:fetchedUser._id},
                 'secret_this_should_be_longer',
-                { expiresIn: "1h" }
+                { expiresIn: "1h" },
+                {username:fetchedUser.username}
             );
-            console.log(token);
+            console.log(token,fetchedUser);
             res.status(200).json({
                 token:token,
                 expiresIn: 3600, //seconds
-                userId: fetchedUser._id
+                userId: fetchedUser._id,
+                username:fetchedUser.name
             })
         })
         .catch(err=>{

@@ -11,15 +11,23 @@ exports.saveTicket=(req,res,next)=>{
         seatno:req.body.seatno,
         state1:req.body.state1,
         state2:req.body.state2,
-        booking_date:req.body.booking_date
+        booking_date:req.body.booking_date,
+        creator:req.userData.userId
 
     });
     const account_sid = 'AC40f3810b7c7f9a84a38c1c15256b57fc';
     const auth_token = 'c79e673924b1cd06911848e1c640abb6';
     var client = new twilio(account_sid, auth_token);
     client.messages.create({
-                            body: `your ticket has been booked .Details are- Name: ${ticket.name} , Phoneno : ${ticket.phoneno}, seat number: ${ticket.seatno }, Boarding State: ${ticket.state1}, Destination State: ${ticket.state2}, Travelling Date: ${ticket.booking_date} and the price for ticket is
-                            ${ticket.ticketcost}       
+                            body: `your ticket has been booked .Details are-
+                            Name: ${ticket.name} ,
+                            Phoneno : ${ticket.phoneno},
+                            seat number: ${ticket.seatno },
+                            Boarding State: ${ticket.state1},
+                            Destination State: ${ticket.state2},
+                            Travelling Date: ${ticket.booking_date}
+                            and 
+                            the price for ticket is ${ticket.ticketcost}       
                          `,
                          to :`+91${ticket.phoneno}`,
                          from :'+15183230418'
@@ -48,3 +56,47 @@ exports.saveTicket=(req,res,next)=>{
 
     
 };
+
+exports.getTicket=(req,res,next)=>{
+        let fetchedPosts;
+    
+        TicketModel.find()
+        .exec()
+        .then((docs)=>{
+            fetchedPosts=docs;
+            return TicketModel.count();
+        })
+        .then(count=>{
+            const response={
+                count: fetchedPosts.length,
+                posts: fetchedPosts.map(doc=>{
+                    return{
+                        _id: doc._id,
+                        name:doc.name,
+                        phoneno:doc.phoneno,
+                        gender:doc.gender,
+                        ticketcost:doc.ticketcost,
+                        seatno:doc.seatno,
+                        state1: doc.state1,
+                        state2: doc.state2,
+                        booking_date: doc.booking_date,
+                creator:doc.userId
+
+                    }
+                })
+            };
+            console.log(fetchedPosts);
+            res.status(200).json({
+                message:'Bookings fetched Successfully',
+                posts:fetchedPosts,
+                maxPosts:count
+            });
+        })
+        .catch((err)=>{
+           
+            res.status(500).json({
+               message:"Fetching bookings failed!"
+            })
+        })
+    
+}

@@ -49,10 +49,8 @@ const PostController=require('../controllers/posts');
 
 router.post('/',checkAuth,/*upload.single('productImage'),*/PostController.createPost);
 
-router.get('/:postId',PostController.getPost);
+// router.get('/:postId',PostController.getPost);
 
-router.patch('/:postId',checkAuth,/*upload.single('productImage'),*/PostController.updatePost)
     
-router.delete('/:postId',checkAuth  , PostController.deletePost );
 
 module.exports=router;
